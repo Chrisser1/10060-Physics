@@ -1,0 +1,20 @@
+name: fysik
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - notebook
+  - ipykernel
+  - ipywidgets
+  - dtumathtools
+  - pip
+  - pip:
+      - sympy
+      - numpy
+      - pandas
+      - matplotlib
+      - pint
+      - uncertainties
+      - scipy
