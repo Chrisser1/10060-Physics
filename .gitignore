@@ -172,3 +172,5 @@ cython_debug/
 
 # Ignore JetBrains IDEs project files
 .idea
+
+.direnv
