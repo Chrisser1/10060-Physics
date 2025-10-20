@@ -9,32 +9,29 @@
     };
   };
 
-  outputs = { self, nixpkgs, pyproject-nix, ... }:
+  outputs = { nixpkgs, pyproject-nix, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-
-      # Loads your pyproject.toml file
       project = pyproject-nix.lib.project.loadPyproject {
         projectRoot = ./.;
       };
 
-      # Specify Python 3.12 for this project
-      python = pkgs.python312;
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      python = pkgs.python3;
 
     in
     {
-      # This creates the development shell that direnv will load
-      devShells.${system}.default =
+      devShells.x86_64-linux.default =
         let
-          # pyproject.nix creates the list of packages for the builder
           arg = project.renderers.withPackages { inherit python; };
-          # Nixpkgs' builder creates the final Python environment
           pythonEnv = python.withPackages arg;
+
         in
-        pkgs.mkShell {
-          # Add the native Python environment to your shell
-          packages = [ pythonEnv ];
-        };
+        pkgs.mkShell { packages = [ pythonEnv ]; };
+
+      packages.x86_64-linux.default =
+        let
+          attrs = project.renderers.buildPythonPackage { inherit python; };
+        in
+        python.pkgs.buildPythonPackage (attrs // { env.CUSTOM_ENVVAR = "hello"; });
     };
 }
