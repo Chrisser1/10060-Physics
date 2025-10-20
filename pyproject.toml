@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "fysik-env"
+version = "0.1.0"
+description = "Native Nix environment for 10060-Physics"
+authors = ["Chris"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.12"
+
+# Jupyter Essentials
+jupyterlab = "*"
+notebook = "*"
+ipykernel = "*"
+ipywidgets = "*"
+
+# Your Packages
+dtumathtools = "*"
+sympy = "*"
+numpy = "*"
+pandas = "*"
+matplotlib = "*"
+pint = "*"
+uncertainties = "*"
+scipy = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
