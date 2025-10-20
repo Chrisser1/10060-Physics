@@ -16,7 +16,7 @@
       };
 
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      python = pkgs.python3;
+      python = pkgs.python312;
 
     in
     {

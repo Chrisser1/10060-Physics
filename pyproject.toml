@@ -10,6 +10,7 @@ dependencies = [
   # Jupyter Essentials
   "jupyterlab",
   "ipykernel",
+  "notebook",
 
   # Your Packages
   "sympy",
